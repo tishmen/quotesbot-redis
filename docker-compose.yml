@@ -8,21 +8,19 @@ services:
     networks:
       - net
 
-  flask:
-    build:
-      context: ./flask
-    command: gunicorn -w4 -b 0.0.0.0:80 server:app
+  webdis:
+    image: 'anapsix/webdis'
+    ports:
+    - 7379:7379
     depends_on:
       - redis
-    ports:
-    - 80:80
     networks:
       - net
 
   scrapy:
     build:
       context: ./scrapy
-    command: python crawl.py
+    command: scrapy crawl quotes
     depends_on:
       - redis
     networks:
