@@ -13,7 +13,6 @@ class QuotesSpider(RedisSpider):
     '''Quotes spider.'''
 
     name = 'quotes'
-    redis_key = 'quotes:start_urls'
 
     def _load_item(self, quote):
         '''Load quote item.'''
