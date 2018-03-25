@@ -2,7 +2,7 @@
 
 import redis
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 
 app = Flask(__name__)
@@ -15,3 +15,4 @@ def schedule():
     data = request.get_json()
     key = '{}:start_urls'.format(data.get('spider'))
     client.lpush(key, data.get('start_urls'))
+    return jsonify({'status': 'success'})
