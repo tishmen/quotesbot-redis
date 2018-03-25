@@ -5,7 +5,7 @@ from datetime import datetime
 from scrapy import Request
 from scrapy_redis.spiders import RedisSpider
 
-from items import QuoteLoader
+from quotesbot.items import QuoteLoader
 
 
 class QuotesSpider(RedisSpider):
