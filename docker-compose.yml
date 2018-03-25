@@ -5,17 +5,28 @@ services:
     image: redis
     ports:
     - 6379:6379
-      networks:
-        - net
+    networks:
+      - net
+
+  flask:
+    build:
+      context: ./flask
+    command: gunicorn -w4 -b 0.0.0.0:80 server:app
+    depends_on:
+      - redis
+    ports:
+    - 80:80
+    networks:
+      - net
 
   scrapy:
-      build:
-        context: ./scrapy
-      command: python run.py
-      depends_on:
-        - redis
-      networks:
-        - net
+    build:
+      context: ./scrapy
+    command: python crawl.py
+    depends_on:
+      - redis
+    networks:
+      - net
 
 networks:
   net:
