@@ -15,6 +15,9 @@ settings = {
         'scrapy_redis.pipelines.RedisPipeline': 300
     }
 }
-process = CrawlerProcess(settings)
-process.crawl(QuotesSpider)
-process.start()
+
+
+if __name__ == '__main__':
+    process = CrawlerProcess(settings)
+    process.crawl(QuotesSpider)
+    process.start()
