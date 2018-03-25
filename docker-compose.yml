@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  redis:
+    image: redis
+    ports:
+    - 6379:6379
+      networks:
+        - net
+
+  scrapy:
+      build:
+        context: ./scrapy
+      command: python run.py
+      depends_on:
+        - redis
+      networks:
+        - net
+
+networks:
+  net:
+    driver: bridge
